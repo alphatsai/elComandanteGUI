@@ -62,14 +62,14 @@ class interface():
 		self.hasError=False
 		self.Menus={}
 		self.Vars={}
-		self.configDir = './example'
+		self.configDir = '../config'
 		self.testDefinePath=''
-		self.confingurePath = { 'elComandante.ini' :'./elComandante.ini.default',
-								'elComandante.conf':'./elComandante.conf.default' }
-		self.confingureOutPut = { 'elComandante.ini' :'./elComandante.ini',
-								  'elComandante.conf':'./elComandante.conf' }
+		self.confingurePath = { 'elComandante.ini' :'../config/elComandante.ini',
+					'elComandante.conf':'../config/elComandante.conf' }
+		self.confingureOutPut = { 'elComandante.ini' :'../config/elComandante.ini',
+					  'elComandante.conf':'../config/elComandante.conf' }
 		self.whichConfig = { 'elComandante.ini':True,
-				     		 'elComandante.conf':False }
+				     'elComandante.conf':False }
 		self.currentPath = self.confingurePath['elComandante.ini']
 		self.loadElcommandateIni();
 		self.loadElcommandateConf();
