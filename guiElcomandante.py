@@ -588,8 +588,15 @@ class interface():
 						self.Entries['ini_Process_Tests_Test']['bg'] = ERROR_COLOR
 					return
 				elif len(newtests) == 2:
-					temperature = newtests[1]
-					if not temperature.isdigit():
+					isBad = False
+					try:
+						istemperature = newtests[1].split('-')
+						temperature = newtests[1].split('-')[1]
+						if len(istemperature) > 2 or istemperature[0] != '':
+							isBad=True
+					except:
+						temperature = newtests[1]
+					if not temperature.isdigit() or isBad:
 						self.Entries['ini_Process_Tests_NewTest']['bg']=ERROR_COLOR
 						print '>> [ERROR] After @ shall be digit, i.e temperature'
 						print '>>         E.x: Fulltest@17'
