@@ -63,6 +63,8 @@ class interface():
 		self.Menus={}
 		self.Vars={}
 		self.configDir = '../config'
+                self.edited={ 'elComandante.ini':False,
+                              'elComandante.conf':False}
 		self.testDefinePath=''
 		self.confingurePath = { 'elComandante.ini' :'../config/elComandante.ini',
 					'elComandante.conf':'../config/elComandante.conf' }
@@ -125,6 +127,10 @@ class interface():
 				self.framesButton[button]['bg']=ENTRY_LOCKED_COLOR
 				self.framesButton[button]['fg']=TITLE_COLOR
 				self.whichConfig[button]=False
+                if self.edited[name]:
+                    self.editedlabel["text"]="*Edited..."
+                else:
+                    self.editedlabel["text"]=""
 		#if not self.isfixed:
 		#	self.lock()
 		return
@@ -300,8 +306,12 @@ class interface():
 	def saveConfig(self):
 		if self.whichConfig['elComandante.ini']:
 			self.iniClass.makeConfig(self.confingureOutPut['elComandante.ini'])
+                        self.edited['elComandante.ini']=False
+                        self.editedlabel["text"]=""
 		if self.whichConfig['elComandante.conf']:
 			self.confClass.makeConfig(self.confingureOutPut['elComandante.conf'])
+                        self.edited['elComandante.conf']=False
+                        self.editedlabel["text"]=""
 		return
 
 	### Add commend label 
@@ -380,6 +390,12 @@ class interface():
 			self.unTouchEntry(entry, value, murmur)
 			return
 		entry['bg']=TYPING_COLOR
+		if self.whichConfig['elComandante.ini']:
+                    self.edited['elComandante.ini']=True
+                    self.editedlabel["text"]="*Edited..."
+		if self.whichConfig['elComandante.conf']:
+                    self.edited['elComandante.conf']=True
+                    self.editedlabel["text"]="*Edited..."
 		return
 
 	def checkChanging(self, entry, value, name='', murmur=False ):
@@ -391,7 +407,6 @@ class interface():
 				return
 		if value == entry.get():
 			entry['bg']=ENTRY_COLOR
-
 		return
 
 	def ConfirmChangeOpt(self, entry, section, option, classType=ISINI, murmur=True):
@@ -1473,6 +1488,10 @@ class interface():
 
 		# Options 
 		mainRow+=1
+		self.editedlabel = Label(self.master, bg=BG_MASTER, font=('helvetica', 15, 'bold'), fg=TITLE4_COLOR )
+		#self.editedlabel["text"]="*Edited..."
+		self.editedlabel["text"]=""
+		self.editedlabel.grid(row=mainRow, column=COLUMNMAX-8, sticky=W )
 		self.addSave( self.master, row=mainRow, column=COLUMNMAX-4,sticky='e')
 		self.addPreview( self.master, row=mainRow, column=COLUMNMAX-3, sticky='ew')
 		self.addQUIT( self.master, row=mainRow, column=COLUMNMAX-2, sticky='w' )
