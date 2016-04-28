@@ -80,11 +80,13 @@ class interface():
 	def loadElcommandateIni(self):
 		self.iniClass = elComandante_ini()
 		self.iniClass.getDefault(self.confingurePath['elComandante.ini'])
+                self.edited['elComandante.ini']=False
 		return
 
 	def loadElcommandateConf(self):
 		self.confClass = elComandante_conf()
 		self.confClass.getDefault(self.confingurePath['elComandante.conf'])
+                self.edited['elComandante.conf']=False
 		return
 
 	def loadTestsOptions(self):
@@ -142,6 +144,8 @@ class interface():
 			return
 		if self.whichConfig['elComandante.ini']:
 			if os.path.isfile( self.entryConfig.get() ):
+                                self.edited['elComandante.ini']=False
+                                self.editedlabel["text"]=""
 				self.confingurePath['elComandante.ini'] = self.entryConfig.get()
 				self.loadElcommandateIni()
 				# refresh option entries
@@ -192,6 +196,8 @@ class interface():
 			if os.path.isfile( self.entryConfig.get() ):
 				self.confingurePath['elComandante.conf'] = self.entryConfig.get()
 				self.loadElcommandateConf()
+                                self.edited['elComandante.conf']=False
+                                self.editedlabel["text"]=""
 				# refresh option entries
 				for name in self.OptEntries:
 					entry = self.OptEntries[name]
@@ -490,7 +496,9 @@ class interface():
 		if self.isfixed:
 			print '>> [INFO] The button is locked!'
 			return
-			
+
+                self.edited['elComandante.ini']=True
+                self.editedlabel["text"]="*Edited..."
 		if self.BoolButtons[name]['text'] == "OFF":
 			print ">> [INFO] Change %s : %s : False -> True "%(section, option)
 			self.BoolButtons[name]['text']="ON"
@@ -550,6 +558,9 @@ class interface():
 		if self.isfixed:
 			print '>> [INFO] The button is locked!'
 			return
+
+                self.edited['elComandante.ini']=True
+                self.editedlabel["text"]="*Edited..."
 
 		if button['text'] == 'Clear':
 			self.Entries['ini_Process_Tests_Test'].delete(0,END)
@@ -715,6 +726,8 @@ class interface():
 
 		value = self.iniClass.Sections[section][option]
 		if float(value)*2 != sec:
+                        self.edited['elComandante.ini']=True
+                        self.editedlabel["text"]="*Edited..."
 			print ">> [INFO] Change %s : %s : %s(%2.0f sec) -> %s(%2.0f sec) "%(section, option, value, float(value)*2, str(sec/2), sec)
 			menu['bg'] = MENU_FULL_COLOR
 			var.set(str(int(sec))+' Sec.')
@@ -775,6 +788,8 @@ class interface():
 			return
 		value = self.iniClass.Sections[section][option]
 		if value != label:
+                        self.edited['elComandante.ini']=True
+                        self.editedlabel["text"]="*Edited..."
 			var.set(label)
 			if label == 'Other':
 				menu['bg'] = FALSE_COLOR
@@ -863,6 +878,8 @@ class interface():
 			return
 		value = self.iniClass.Sections[section][option]
 		if value != label:
+                        self.edited['elComandante.ini']=True
+                        self.editedlabel["text"]="*Edited..."
 			print ">> [INFO] Change %s : %s : %s -> %s "%(section, option, value, label)
 			if label == 'Full':
 				menu['bg'] = MENU_FULL_COLOR
@@ -947,6 +964,9 @@ class interface():
 		if self.isfixed:
 			print '>> [INFO] The menu is locked!'
 			return
+
+                self.edited['elComandante.conf']=True
+                self.editedlabel["text"]="*Edited..."
 
 		self.Entries[name]['bg']=TYPING_COLOR
 		menu['bg'] = TYPING_COLOR
