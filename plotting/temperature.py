@@ -35,9 +35,15 @@ while (1):
 	gh.GetYaxis().SetTitle("Temperature [#circC]")
 	gh.Draw("APL")
 
-	c1.Modified()
-	c1.Update()
-	time.sleep(4)
+	#c1.Modified()
+	#c1.Update()
+	#time.sleep(4)
+	if not gROOT.GetListOfCanvases().FindObject("canvasname"):
+		c1.Modified()
+		c1.Update()
+		time.sleep(4)
+		
+	#	break
 	if gROOT.IsInterrupted():      # allow user interrupt
 		c1.SaveAs('temperature.pdf')
 		break

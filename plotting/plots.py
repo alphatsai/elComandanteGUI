@@ -53,7 +53,7 @@ class gMainWindow():
 		c1.GetFrame().SetBorderSize( 6 )
 		c1.GetFrame().SetBorderMode( -1 )
 
-	def doDraw(self):		
+	#def doDraw(self):		
 		sh = TSignalHandler( kSigInterrupt, False )
 		sh.Add()
 		sh.Connect( "Notified()", "TROOT", gROOT, "SetInterrupt()" )
