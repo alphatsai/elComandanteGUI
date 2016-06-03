@@ -1,0 +1,4 @@
+
+[Tests]
+#TestDescription = ThermalCycling
+#Test = IV@15,Fulltest@15,IV@-25,Fulltest@-25,Cycle,IV@15,Fulltest@15,IV@-25,Fulltest@-25

@@ -1,0 +1,96 @@
+[Modules]
+TB0 : M0285
+TB1 : M3003
+TB2 : M0283
+TB3 : M0284
+
+[ModuleType]
+TB0 : Full
+TB1 : Full
+TB2 : Full
+TB3 : Full
+
+[TestboardUse]
+TB0 : True
+TB1 : True
+TB2 : True
+TB3 : True
+
+[Cycle]
+highTemp : 17
+lowTemp : -25
+nCycles : 10
+
+[IV]
+Delay : 2.0
+Start : 0
+Step : 10
+Stop : -600
+
+[LeakageCurrent]
+Duration : 1200
+
+[Keithley]
+BiasVoltage : -150
+KeithleyUse : True
+
+[LowVoltage]
+LowVoltageUse : False
+
+[CoolingBox]
+CoolingBoxUse : True
+
+[Xray]
+XrayUse : False
+
+[Environment Xrf]
+Temperature : 17
+XrayCurrent : 30
+XrayTarget : Mo
+XrayVoltage : 30
+
+[Environment Mo]
+Temperature : <!Environment Xrf|Temperature!>
+XrayCurrent : <!Environment Xrf|XrayCurrent!>
+XrayTarget : Mo
+XrayVoltage : <!Environment Xrf|XrayVoltage!>
+
+[Environment Ag]
+Temperature : <!Environment Xrf|Temperature!>
+XrayCurrent : <!Environment Xrf|XrayCurrent!>
+XrayTarget : Ag
+XrayVoltage : <!Environment Xrf|XrayVoltage!>
+
+[Environment Ba]
+Temperature : <!Environment Xrf|Temperature!>
+XrayCurrent : <!Environment Xrf|XrayCurrent!>
+XrayTarget : Ba
+XrayVoltage : <!Environment Xrf|XrayVoltage!>
+
+[Test Trim]
+testParameters : TrimVcal=40
+
+[Analysis VcalCalibrationStepAnalysisMo]
+command : XrayThresholdScanAnalysis --output analysis_XrayThresholdScanMo.root *_Mo/commander_VcalCalibrationStep.root
+
+[Analysis VcalCalibrationStepAnalysisAg]
+command : XrayThresholdScanAnalysis --output analysis_XrayThresholdScanAg.root *_Ag/commander_VcalCalibrationStep.root
+
+[Analysis VcalCalibrationStepAnalysisBa]
+command : XrayThresholdScanAnalysis --output analysis_XrayThresholdScanBa.root *_Ba/commander_VcalCalibrationStep.root
+
+[Analysis VcalVsThresholdAnalysis]
+command : VcalVsThresholdAnalysis --output analysis_VcalVsThreshold.root *VcalVsThreshold_*
+
+[Analysis VcalCalibrationAnalysis]
+command : VcalCalibration --targets 17.49:22.16:32.19 --output VcalCalibration.root analysis_VcalVsThreshold.root analysis_XrayThresholdScanMo.root analysis_XrayThresholdScanAg.root analysis_XrayThresholdScanBa.root
+
+[Tests]
+Test : IV@17,Fulltest@17,IV@-20,Fulltest@-20,Cycle,IV@-20,Fulltest@-20,IV@17,Fulltest@17
+TestDescription : FullQualification
+
+[OperationDetails]
+Hostname : pcpixelcb
+Operator : fiori
+TestCenter : CERN
+

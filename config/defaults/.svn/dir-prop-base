@@ -1,0 +1,23 @@
+K 10
+svn:ignore
+V 277
+dacParameters60_C0.dat
+module_C0.dat
+module_C1.dat
+module_C10.dat
+module_C11.dat
+module_C12.dat
+module_C13.dat
+module_C14.dat
+module_C15.dat
+module_C2.dat
+module_C3.dat
+module_C4.dat
+module_C5.dat
+module_C6.dat
+module_C7.dat
+module_C8.dat
+module_C9.dat
+trimParameters60_C0.dat
+
+END
