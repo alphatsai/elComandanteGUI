@@ -1,46 +1,0 @@
-10
-
-dir
-237
-https://svn.cern.ch/reps/elcomandante/trunk/config/defaults
-https://svn.cern.ch/reps/elcomandante
-
-
-
-2014-02-27T15:37:41.316154Z
-203
-peller
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-4525493e-7705-40b1-a816-d608a930855b
-
-defaultParametersHalfModuleL
-dir
-
-defaultParametersRocDigV2
-dir
-
-defaultParametersRocPSI46v2
-dir
-
-defaultParametersHalfModuleR
-dir
-
-defaultParametersModule
-dir
-
-defaultParametersDigModule
-dir
-
