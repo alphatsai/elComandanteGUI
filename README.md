@@ -2,6 +2,8 @@
 
 ###### `python` `GUI` ` tkinter` `pyRoot`
 
+Same article: https://hackmd.io/s/BySpvdN4G
+
 ## Introduction
 I was involved in ***Phase 1 silicon pixel detector upgrade*** of the CMS collaboration at CERN since 2014 to 2016. We successfully produced 176 silicon modules for the half of 3rd layer of barrel tracker of new phase CMS detector which has been installed in February 2017. My responsibility is to qualify each ensembled module with the **thermal stress expriement** and give the grade to central database. Thus, I am the leader of 4 to build the thermal qualificaton laboratory.
 
